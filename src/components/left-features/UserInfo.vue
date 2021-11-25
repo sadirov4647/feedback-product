@@ -1,0 +1,28 @@
+<template>
+    <div class="about-user">
+        <div class="user-info">
+            <h2 class="user-name">Frontend Mentor</h2>
+            <p class="user-board">user board</p>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name:"UserInfo"
+    }
+</script>
+
+<style scoped>
+    .about-user{
+        background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%);
+        border-radius: 10px;
+        padding: 24px;
+    }
+    .user-name{
+        color: #fff;
+    }
+    .user-board{
+        color: #fff;
+    }
+</style>
