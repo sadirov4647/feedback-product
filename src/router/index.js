@@ -3,12 +3,17 @@ import Login from '../components/Login.vue'
 
 const routes = [
   {
+    path:'/',
+    name:'MainPage',
+    component:() => import('../views/MainPage.vue')
+  },
+  {
     path:'/signIn',
     name:'signIn',
     component:Login
   },
   {
-    path:'/',
+    path:'/signUp',
     name:'signUp',
     component:()=> import('../components/SignUp.vue')
   },

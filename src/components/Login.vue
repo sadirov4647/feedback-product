@@ -7,28 +7,20 @@
         <input type="password" id="password" placeholder="Please enter your password" v-model="password">
 
         <input type="submit" value="Login">
+
+        <router-link :to="{ name:'signUp'}">Sign Up</router-link>
     </div>
 </template>
 
 <script>
-    import firebase from 'firebase'
     export default {
         name:'Login',
         data(){
             return{
-                email:'',
-                password:''
+
             }
         },
-        method:{
-            Login(){
-                firebase
-                .auth().createUserWithEmailAndPassword(this.email, this.password)
-                .then(this.$router.replace('/main'))
-                .then(data => console.log(data))
-                .catch(err => alert(err.message))
-            }
-        }
+        method:{}
     }
 </script>
 

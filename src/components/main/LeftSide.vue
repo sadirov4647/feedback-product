@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import UserInfo from '../components/left-features/UserInfo.vue'
+  import UserInfo from '../left-features/UserInfo.vue'
     export default {
       name:'LeftSide',
       components:{

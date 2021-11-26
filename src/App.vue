@@ -1,25 +1,18 @@
 <template>
   <div class="container">
-    <Form/>
     <div class="home" v-if="isLoggedIn">
-      <LeftSide class="left"/>
-      <Main class="main"/>
+      <MainPage/>
     </div>
   </div>
   <router-view />
 </template>
 
 <script>
-  import Main from './views/Main.vue'
-  import LeftSide from './views/LeftSide.vue'
-  import Form from './views/Form.vue'
-
+  import MainPage from './views/MainPage.vue'
   export default {
     name: "Home",
     components: {
-      LeftSide,
-      Main,
-      Form
+      MainPage
     },
   };
 </script>

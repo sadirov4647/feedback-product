@@ -2,8 +2,10 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import firebase from 'firebase'
-
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import 'firebase/compat/database';
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyB5ug-SbblvkijpZ0sI8iSL_Wd6dZzuF2c",
@@ -17,5 +19,9 @@ const firebaseConfig = {
   };
 
   firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const database = firebase.database();
+
+  export { auth, database }
 
 createApp(App).use(store).use(router).mount("#app");

@@ -1,22 +1,41 @@
 <template>
-    <div class="sign-up-user">
+    <form class="sign-up-user" @submit.prevent="Login()">
         <label for="user-name"></label>
-        <input type="text" id="user-name" placeholder="Please enter your name...">
+        <input type="text" id="user-name" placeholder="Please enter your name..." v-model="userName"  required>
 
         <label for="age"></label>
-        <input type="text" id="age" placeholder="Please enter your age...">
+        <input type="text" id="age" placeholder="Please enter your age..." v-model="age" required>
 
         <label for="email"></label>
-        <input type="email" id="email" placeholder="Please enter your email...">
+        <input type="email" id="email" placeholder="Please enter your email..." v-model="email" required>
 
         <label for="password"></label>
-        <input type="password" id="password" placeholder="Please enter your password...">
-    </div>
+        <input type="password" id="password" placeholder="Please enter your password..." v-model="password"  required>
+
+        <input type="submit" value="Login">
+
+        <router-link class="signIn" :to="{ name:'signIn' }">Sign In</router-link>
+    </form>
 </template>
 
 <script>
+    import { auth } from '../main'
     export default {
-        name:'SignUp'
+        name:'SignUp',
+        data(){
+            return{
+                email:"",
+                password:"",
+                age:"",
+                userName:""
+            }
+        },
+        methods:{
+            Login(){
+                auth.createUserWithEmailAndPassword(this.email, this.password, this.age, this.userName)
+                .catch(err => alert(err.message))
+            }
+        }
     }
 </script>
 
