@@ -1,7 +1,7 @@
 <template>
     <div class="about-user">
         <div class="user-info">
-            <h2 class="user-name">Frontend Mentor</h2>
+            <h2 class="user-name">izzatillo</h2>
             <p class="user-board">user board</p>
         </div>
     </div>
@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name:"UserInfo"
+        name:"UserInfo",
     }
 </script>
 

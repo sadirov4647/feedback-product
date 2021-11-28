@@ -33,6 +33,10 @@
         methods:{
             Login(){
                 auth.createUserWithEmailAndPassword(this.email, this.password, this.age, this.userName)
+                .then(res => {
+                    res.displayName = this.userName
+                })
+                .then(res => console.log(res))
                 .catch(err => alert(err.message))
             }
         }

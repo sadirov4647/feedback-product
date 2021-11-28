@@ -10,7 +10,7 @@
   "dependencies": {
     "@firebase/app": "^0.7.9",
     "axios": "^0.24.0",
-    "core-js": "^3.6.5",
+    "core-js": "^3.19.1",
     "firebase": "^9.5.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
@@ -33,13 +33,14 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
+      "plugin:vue/vue3-essential"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-console": "off"
+    }
   },
   "browserslist": [
     "> 1%",

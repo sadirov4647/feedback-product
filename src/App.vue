@@ -1,19 +1,27 @@
 <template>
   <div class="container">
-    <div class="home" v-if="isLoggedIn">
-      <MainPage/>
+    <div class="home">
+      <LeftSide/>
+      <Main/>
     </div>
   </div>
   <router-view />
 </template>
 
 <script>
-  import MainPage from './views/MainPage.vue'
+  import LeftSide from './views/main/LeftSide.vue'
+  import Main from './views/main/Main.vue'
   export default {
     name: "Home",
     components: {
-      MainPage
+      LeftSide,
+      Main
     },
+    data(){
+      return{
+        isLoggedIn:false
+      }
+    }
   };
 </script>
 

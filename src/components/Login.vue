@@ -1,5 +1,5 @@
 <template>
-    <div class="login-user">
+    <form class="login-user" @submit.prevent="Login()">
         <label for="email"></label>
         <input type="email" id="email" placeholder="Please enter your email" v-model="email">
 
@@ -9,18 +9,32 @@
         <input type="submit" value="Login">
 
         <router-link :to="{ name:'signUp'}">Sign Up</router-link>
-    </div>
+    </form>
 </template>
 
 <script>
+import { auth } from '../main'
+import router from '../router'
     export default {
         name:'Login',
         data(){
             return{
-
+                email:'',
+                password:''
             }
         },
-        method:{}
+        methods:{
+            Login(){
+                auth.signInWithEmailAndPassword(this.email, this.password)
+                .then(res => {
+                    if(auth.currentUser){
+                        console.log(res.user.displayName)
+                        router.replace('/')
+                    }
+                })
+                .catch(err => console.log(err.message))
+            }
+        }
     }
 </script>
 
