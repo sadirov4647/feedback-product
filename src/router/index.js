@@ -18,6 +18,11 @@ const routes = [
     name:'signUp',
     component:()=> import('../components/SignUp.vue')
   },
+  {
+    path:'/feedback',
+    name:'Feedback',
+    component:()=> import('../components/main-features/feedback/Feedback.vue')
+  }
 ];
 
 const router = createRouter({
