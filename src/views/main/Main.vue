@@ -1,13 +1,21 @@
 <template>
   <div class="main-side">
-    <h1>Main</h1>
+    <MainHeader/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import MainHeader from '../../components/main-features/MainHeader.vue'
 export default {
   name: "Main",
-  components: {},
+  components: {
+    MainHeader
+  },
 };
 </script>
+
+<style>
+  .main-side{
+    flex-grow: 1;
+  }
+</style>

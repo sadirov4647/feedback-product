@@ -28,6 +28,8 @@
 <style>
   body{
     background: #F2F2F2;
+    font-size: 16px;
+    line-height: 23px;
   }
   .container{
     max-width: 1150;
@@ -41,5 +43,12 @@
   }
   .left{
     margin-right: 30px;
+  }
+
+
+  @media only screen and (max-width:700px){
+    .home{
+      flex-direction: column;
+    }
   }
 </style>
