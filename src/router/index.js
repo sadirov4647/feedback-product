@@ -19,9 +19,9 @@ const routes = [
     component:()=> import('../components/SignUp.vue')
   },
   {
-    path:'/feedback',
-    name:'Feedback',
-    component:()=> import('../components/main-features/feedback/Feedback.vue')
+    path:'/new-feedback',
+    name:'NewFeedback',
+    component:()=> import('../components/main-features/feedback/NewFeedback.vue')
   }
 ];
 

@@ -30,6 +30,7 @@
     background: #F2F2F2;
     font-size: 16px;
     line-height: 23px;
+    color: #3A4374;
   }
   .container{
     max-width: 1150;

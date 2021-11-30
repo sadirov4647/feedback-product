@@ -15,9 +15,7 @@
             </datalist>
         </div>
 
-        <button class="add-feedback__btn">
-            + Add Feedback
-        </button>
+        <router-link to="/new-feedback"> + Add Feedback</router-link>
     </div>
 </template>
 
@@ -65,7 +63,7 @@
     input{
         color: #fff;
     }
-    .add-feedback__btn{
+    a{
         padding: 12px 25px;
         background-color: #AD1FEA;
         border: none;
@@ -74,7 +72,7 @@
         color: #fff;
         cursor: pointer;
     }
-    .add-feedback__btn:hover{
+    a:hover{
         background-color: #C75AF6;
     }
 </style>
