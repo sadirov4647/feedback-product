@@ -1,11 +1,11 @@
 <template>
   <div class="filter-wrapper" @click="filterFeedback">
-    <button class="filter-btn active">All</button>
-    <button class="filter-btn">Ui</button>
-    <button class="filter-btn">Bug</button>
-    <button class="filter-btn">UX</button>
-    <button class="filter-btn">Inhenciment</button>
-    <button class="filter-btn">Feature</button>
+    <button value="all" class="filter-btn active">All</button>
+    <button value="ui" class="filter-btn">Ui</button>
+    <button value="bug" class="filter-btn">Bug</button>
+    <button value="ux" class="filter-btn">UX</button>
+    <button value="enhancement" class="filter-btn">Enhancement</button>
+    <button value="feature" class="filter-btn">Feature</button>
   </div>
 </template>
 
@@ -13,12 +13,11 @@
 export default {
   name: "FilterFeatures",
   methods:{
-    filterFeedback(){
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', function(){
-          console.log(btn.innerHTML)
-        })
-      })
+    filterFeedback(event){
+      let ok = event.target
+      if(ok.classList.contains('filter-btn')){
+        console.log(ok.value)
+      }
     }
   }
 };

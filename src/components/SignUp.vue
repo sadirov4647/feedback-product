@@ -14,7 +14,7 @@
 
         <input type="submit" value="Login">
 
-        <router-link class="signIn" :to="{ name:'signIn' }">Sign In</router-link>
+        <router-link class="signIn" to="/signIn">Sign In</router-link>
     </form>
 </template>
 

@@ -17,11 +17,17 @@
 
         <router-link to="/new-feedback"> + Add Feedback</router-link>
     </div>
+
+    <Feedbacks/>
 </template>
 
 <script>
+    import Feedbacks from '../main-features/feedback/Feedbacks.vue'
     export default {
-        name:'MainHeader'
+        name:'MainHeader',
+        components:{
+            Feedbacks
+        }
     }
 </script>
 
@@ -71,6 +77,8 @@
         margin-left: auto;
         color: #fff;
         cursor: pointer;
+        white-space: nowrap;
+        text-decoration: none;
     }
     a:hover{
         background-color: #C75AF6;

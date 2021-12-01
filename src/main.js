@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import axios from "axios";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
@@ -22,6 +23,7 @@ const firebaseConfig = {
   const auth = firebase.auth();
   const database = firebase.database();
   const firestore = firebase.firestore();
+
 
   export { auth, database, firestore }
 

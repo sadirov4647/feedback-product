@@ -38,24 +38,25 @@
 <script>
     import { firestore, database } from '../../../main';
     import axios from 'axios'
-import { ref } from '@vue/reactivity';
     export default {
         name:'NewFeedback',
         data(){
             return{
-                feedbackData:{
                     headline:'',
                     category:'',
                     comment:''
-                }
             }
         },
         methods:{
             submitted(){
-               const ref = database.ref('feedbacks');
-
-                let data = feedbackData
-                ref.push(data)
+               axios.post('https://feedback-product-cd430-default-rtdb.firebaseio.com/users.json',{
+                   headline: this.headline,
+                   category:this.category,
+                   comment:this.comment
+               })
+               .then(res => console.log(res))
+               .then(this.$router.push('/'))
+               .catch(err => console.log(err))
             },
 
         //  async submitFeedback(){
