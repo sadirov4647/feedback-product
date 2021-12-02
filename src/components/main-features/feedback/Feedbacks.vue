@@ -22,11 +22,14 @@
 <script>
 import axios from 'axios'
 import { myUserId } from '../../../main'
+import { API_BASE_URL } from '../../../config'
     export default {
         name:'Feedbacks',
         created(){
-                axios.get(`https://feedback-product-cd430-default-rtdb.firebaseio.com/users.json/`)
-                .then(data => console.log(data))
+                // axios.get(`${API_BASE_URL}users`,{
+
+                // })
+                // .then(data => console.log(data))
             }
     }
 </script>

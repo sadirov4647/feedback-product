@@ -1,0 +1,1 @@
+export const API_BASE_URL = 'https://feedback-product-cd430-default-rtdb.firebaseio.com/';

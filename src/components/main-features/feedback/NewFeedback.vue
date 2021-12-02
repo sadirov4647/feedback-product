@@ -37,6 +37,7 @@
 
 <script>
     import { firestore, database } from '../../../main';
+    import { API_BASE_URL } from '../../../config'
     import axios from 'axios'
     export default {
         name:'NewFeedback',
