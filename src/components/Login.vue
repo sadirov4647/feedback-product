@@ -32,7 +32,7 @@ import router from '../router'
                         router.replace('/')
                     }
                 })
-                .catch(err => console.log(err.message))
+                .catch(err => console.log(err.message));
             }
         }
     }

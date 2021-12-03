@@ -36,8 +36,7 @@
 </template>
 
 <script>
-    import { firestore, database } from '../../../main';
-    import { API_BASE_URL } from '../../../config'
+    import { firestore, database, databaseURL } from '../../../main';
     import axios from 'axios'
     export default {
         name:'NewFeedback',
@@ -49,8 +48,8 @@
             }
         },
         methods:{
-            submitted(){
-               axios.post('https://feedback-product-cd430-default-rtdb.firebaseio.com/users.json',{
+         async  submitted(){
+            await   axios.post('https:feedback-product-cd430-default-rtdb.firebaseio.com/users.json',{
                    headline: this.headline,
                    category:this.category,
                    comment:this.comment
