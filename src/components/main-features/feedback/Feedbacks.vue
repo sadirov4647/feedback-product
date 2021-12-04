@@ -11,7 +11,7 @@
             </div>
         <router-link to="/">
             <div class="feedback-features">
-                <h3 class="feedback-features__headline">{{ feedback.headline}}</h3>
+                <h3 class="feedback-features__headline">{{ feedback.headline }}</h3>
                 <p class="feedback-features__comment">{{ feedback.comment }}</p>
                 <span class="feedback-features__category">{{ feedback.category }}</span>
             </div>
@@ -29,24 +29,34 @@ import { db } from '../../../main'
         name:'Feedbacks',
         data(){
             return{
-                feedbacks:[]
+                feedbacks:[0]
             }
         },
+        computed(){
+
+        },
        async created(){
-           var feddbackRef = db.ref('/users')
-           feddbackRef.once('value', function(snapshot){
-            var feedbackss = []
+           var feedbackRef = db.ref('/feedbacks')
+           feedbackRef.once('value', function(snapshot){
+            let feedbackss = []
 
             snapshot.forEach(function(childSnapshot){
                 var key = childSnapshot.key;
                 var data = childSnapshot.val();
 
 
-                feedbackss.push({ key:key, headline:data.headline, category:data.category, comment:data.comment})
+                feedbackss.push(
+                    {
+                        key:key,
+                        headline:data.headline,
+                        category:data.category,
+                        comment:data.comment
+                    }
+                )
                 console.log(feedbackss)
             });
         });
-        this.feedbacks = feedbackss
+            // this.feedbacks = feedbackss
     }
     }
 </script>
