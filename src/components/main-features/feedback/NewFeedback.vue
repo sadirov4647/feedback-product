@@ -36,20 +36,27 @@
 </template>
 
 <script>
-    import { firestore, database, databaseURL } from '../../../main';
-    import axios from 'axios'
+    import { firestore, db } from '../../../main';
+    import axios from 'axios';
+
+    let userRef = db.ref('users');
     export default {
         name:'NewFeedback',
+    //     firebase:{
+    //      users:userRef,
+    //    },
         data(){
             return{
+                feedback:{
                     headline:'',
                     category:'',
                     comment:''
+                }
             }
         },
         methods:{
          async  submitted(){
-            await   axios.post('https:feedback-product-cd430-default-rtdb.firebaseio.com/users.json',{
+            await  axios.post('https:feedback-product-cd430-default-rtdb.firebaseio.com/users.json',{
                    headline: this.headline,
                    category:this.category,
                    comment:this.comment

@@ -20,12 +20,11 @@ const firebaseConfig = {
 
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
-  const database = firebase.database();
+  const db = firebase.database();
   const firestore = firebase.firestore();
 
 
 
-
-  export { auth, database, firestore, firebase}
+  export { auth, db, firestore, firebase}
 
 createApp(App).use(store).use(router).mount("#app");

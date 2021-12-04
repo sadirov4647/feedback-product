@@ -1,15 +1,19 @@
 <template>
     <ul class="all-feedback__list">
-        <li class="feedback-list__item">
+        <li
+        class="feedback-list__item"
+        v-for="(feedback, key) in feedbacks"
+        :key="key"
+        >
             <div class="like-point">
                 <img src="../../../assets/uparrow.png" alt="like symbol" width="12" height="8">
                 <span class="like-count">112</span>
             </div>
         <router-link to="/">
             <div class="feedback-features">
-                <h3 class="feedback-features__headline">Add tags for solutions</h3>
-                <p class="feedback-features__comment">Easier to search for solutions based on a specific stack.</p>
-                <span class="feedback-features__category">Enhancement</span>
+                <h3 class="feedback-features__headline">{{ feedback.headline}}</h3>
+                <p class="feedback-features__comment">{{ feedback.comment }}</p>
+                <span class="feedback-features__category">{{ feedback.category }}</span>
             </div>
         </router-link>
             <div class="feedback-comment">
@@ -20,14 +24,30 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { myUserId } from '../../../main'
+import { db } from '../../../main'
     export default {
         name:'Feedbacks',
-       async created(){
-             const ok = await axios.get('https://feedback-product-cd430-default-rtdb.firebaseio.com/users/-MpuxCsleCOrdu368f4e')
-             .then(console.log(ok))
+        data(){
+            return{
+                feedbacks:[]
             }
+        },
+       async created(){
+           var feddbackRef = db.ref('/users')
+           feddbackRef.once('value', function(snapshot){
+            var feedbackss = []
+
+            snapshot.forEach(function(childSnapshot){
+                var key = childSnapshot.key;
+                var data = childSnapshot.val();
+
+
+                feedbackss.push({ key:key, headline:data.headline, category:data.category, comment:data.comment})
+                console.log(feedbackss)
+            });
+        });
+        this.feedbacks = feedbackss
+    }
     }
 </script>
 
