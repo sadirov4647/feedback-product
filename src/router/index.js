@@ -6,7 +6,8 @@ const routes = [
   {
     path:'/',
     name:'Home',
-    component:App
+    component:App,
+    props:true
   },
   {
     path:'/signIn',
@@ -19,9 +20,16 @@ const routes = [
     component:()=> import('../components/SignUp.vue')
   },
   {
+    path:'/feedback/:key',
+    name:'FeedbackDetail',
+    component:()=> import('../components/main-features/feedback/FeedbackDetail.vue'),
+    props:true
+  },
+  {
     path:'/new-feedback',
     name:'NewFeedback',
-    component:()=> import('../components/main-features/feedback/NewFeedback.vue')
+    component:()=> import('../components/main-features/feedback/NewFeedback.vue'),
+    props:true
   }
 ];
 

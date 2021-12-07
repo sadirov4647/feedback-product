@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div class="home">
-      <LeftSide/>
-      <Main/>
+      <LeftSide />
+      <Main />
     </div>
   </div>
-  <router-view />
+  <router-view/>
 </template>
 
 <script>
