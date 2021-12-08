@@ -36,7 +36,7 @@ export default {
   name: "Feedbacks",
   data() {
     return {
-      feedbacks: [],
+      feedbacks: []
     };
   },
    created() {
