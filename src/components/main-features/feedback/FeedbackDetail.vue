@@ -41,7 +41,7 @@
                                 <button @click="replySwitch" class="reply-btn">Reply</button>
                             </div>
                             <div class="comment-main">
-                                <p class="comment-main__text">{{comment}}</p>
+                                <p class="comment-main__text">{{comment.comment}}</p>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
 
                         Object.keys(childObject).forEach(ok => {
                             if(childObject[ok].comment){
-                                this.comments = childObject[ok]
+                                this.comments.push(childObject[ok])
                                 console.log(childObject[ok])
                             }
                         })
