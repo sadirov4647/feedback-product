@@ -50,8 +50,7 @@
 </template>
 
 <script>
-import { firestore, db } from "../../../main";
-import axios from "axios";
+import { db } from "../../../main";
 
 export default {
   name: "NewFeedback",
@@ -69,15 +68,12 @@ export default {
   },
   methods: {
     async submitted() {
-      await axios
-        .post(
-          "https:feedback-product-cd430-default-rtdb.firebaseio.com/feedbacks.json",
-          {
+       let newFeedback = db.ref('/feedbacks')
+      await newFeedback.push({
             headline: this.headline,
             category: this.category,
             comment: this.comment,
-          }
-        )
+          })
         .then((res) => console.log(res))
         .then(this.$router.push("/"))
         .catch((err) => console.log(err));

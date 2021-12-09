@@ -57,7 +57,7 @@
             <h3 class="adding-comment__title">Add Comment</h3>
             <!-- <p v-if="commentLength > 250">You are typing so much!!!</p> -->
             <textarea name="adding-comment__text" class="adding-comment__text" cols="30" rows="5" v-model="commentAddWord" maxlength="250"></textarea>
-            <form class="adding-comment__form">
+            <form class="adding-comment__form" @submit.prevent="addComment">
                 <span v-if="commentLength < 250">{{ 250 - commentLength }} Characters left</span>
                 <span v-else>You are typing so much!!!</span>
                 <button class="adding_btn" type="submit">Post Comment</button>
@@ -68,10 +68,6 @@
 
 <script>
     import { db } from '../../../main'
-    // import ella from '../../../assets/ella.png'
-    // import jack from '../../../assets/jack.png'
-    // import mask from '../../../assets/mask.png'
-    // import richard from '../../../assets/richard.png'
     export default {
         name:'FeedbackDetail',
         data(){
@@ -93,12 +89,14 @@
         async created(){
             let feedback = db.ref('/feedbacks');
             feedback.once('value', (snapshot) => {
-                snapshot.forEach(item =>{
+                snapshot.forEach(item => {
                     if(item.key === this.key){
-                        this.feedback = item.val()
+                    this.feedback = item.val()
+                    let childObject = item
+                    console.log(childObject.child().key)
                     }
                 })
-            })
+            });
         },
         methods:{
             replySwitch(){
@@ -108,11 +106,14 @@
 
             },
             addComment(){
-                let comments = db.ref('/feedbacks');
-                comments.set('')
-            }
-
-        }
+                let comments = db.ref('feedbacks/')
+                let salom = comments.child(this.key)
+                salom.push({
+                    comment: this.commentAddWord
+                }).then(this.commentAddWord = '')
+                .then(console.log())
+       }
+     }
     }
 </script>
 
