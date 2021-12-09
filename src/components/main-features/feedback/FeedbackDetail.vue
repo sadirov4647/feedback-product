@@ -28,8 +28,8 @@
 
         <div class="feedback-comments__section">
             <h3 class="feedback-comments__count">4 Comments</h3>
-            <ul class="feedback-comments">
-                <li class="comments">
+            <ul  class="feedback-comments" >
+                <li class="comments" v-for="(comment, key) in comments" :key="key">
                     <div class="real-comments__wrapper">
                         <img class="commentator-image" src="../../../assets/jack.png" alt="commentator image" width="40" height="40">
                         <div class="except-image__comment">
@@ -41,7 +41,7 @@
                                 <button @click="replySwitch" class="reply-btn">Reply</button>
                             </div>
                             <div class="comment-main">
-                                <p class="comment-main__text">Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device’s dark mode turns on without the bright background it currently has.</p>
+                                <p class="comment-main__text">{{comment}}</p>
                             </div>
                         </div>
                     </div>
@@ -87,13 +87,22 @@
             }
         },
         async created(){
+
             let feedback = db.ref('/feedbacks');
             feedback.once('value', (snapshot) => {
                 snapshot.forEach(item => {
                     if(item.key === this.key){
                     this.feedback = item.val()
-                    let childObject = item
-                    console.log(childObject.child().key)
+                    }
+                    if(item.key === this.key){
+                        let childObject = item.val()
+
+                        Object.keys(childObject).forEach(ok => {
+                            if(childObject[ok].comment){
+                                this.comments = childObject[ok]
+                                console.log(childObject[ok])
+                            }
+                        })
                     }
                 })
             });
@@ -106,12 +115,11 @@
 
             },
             addComment(){
-                let comments = db.ref('feedbacks/')
-                let salom = comments.child(this.key)
-                salom.push({
+                let comments = db.ref(`feedbacks/${this.key}`)
+                comments.push({
                     comment: this.commentAddWord
                 }).then(this.commentAddWord = '')
-                .then(console.log())
+                .then()
        }
      }
     }
