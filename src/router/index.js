@@ -4,15 +4,15 @@ import App from '../App.vue'
 
 const routes = [
   {
-    path:'/',
-    name:'Home',
-    component:App,
-    props:true
+    path:'/signIn',
+    name:'signIn',
+    component:Login,
   },
   {
-    path:'/signIn',
+    path:'/',
     name:'Home',
-    component:Login
+    component:Login,
+    props:true
   },
   {
     path:'/signUp',
@@ -30,6 +30,11 @@ const routes = [
     name:'NewFeedback',
     component:()=> import('../components/main-features/feedback/NewFeedback.vue'),
     props:true
+  },
+  {
+    path:'/main-page',
+    name:'MainPage',
+    component:()=> import('../views/MainPage.vue'),
   }
 ];
 

@@ -1,6 +1,6 @@
 <template>
     <div class="feedback-page__header">
-        <router-link to="/">Go Back</router-link>
+        <router-link to="/main-page">Go Back</router-link>
         <button class="edit-feedback">Edit Feedback</button>
     </div>
 
@@ -36,7 +36,7 @@
                             <div class="comment-header">
                                 <div class="commentator-info">
                                     <h5 class="commentator-name">Elijah Moss</h5>
-                                    <span class="commentator-email">@hexagon.bestagon</span>
+                                    <span class="commentator-email">{{ comment.userEmail }}</span>
                                 </div>
                                 <button @click="replySwitch" class="reply-btn">Reply</button>
                             </div>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <form @prevent-default="replyToComment"  v-if="isReply" class="comments-reply">
-                        <textarea class="comments-reply__text" name="reply-comment" cols="30" rows="5"></textarea>
+                        <textarea class="comments-reply__text" name="reply-comment" cols="30" rows="5" v-model="commentReply"></textarea>
                         <button class="adding_btn" type="submit">Post Reply</button>
                     </form>
                 </li>
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-    import { db } from '../../../main'
+    import { db, auth } from '../../../main'
     export default {
         name:'FeedbackDetail',
         data(){
@@ -76,15 +76,15 @@
                 key:this.$route.params.key,
                 isReply:false,
                 comments:[],
-                commentReplies:[],
-                commentAddWord:''
+                commentReply:'',
+                commentAddWord:'',
             }
         },
         computed:{
             commentLength(){
                 let commentLength = this.commentAddWord.length
                 return commentLength
-            }
+            },
         },
         async created(){
 
@@ -92,7 +92,7 @@
             feedback.once('value', (snapshot) => {
                 snapshot.forEach(item => {
                     if(item.key === this.key){
-                    this.feedback = item.val()
+                    this.feedback = item.val();
                     }
                     if(item.key === this.key){
                         let childObject = item.val()
@@ -117,7 +117,9 @@
             addComment(){
                 let comments = db.ref(`feedbacks/${this.key}`)
                 comments.push({
-                    comment: this.commentAddWord
+                    comment: this.commentAddWord,
+                    userEmail: auth.currentUser.email,
+                    reply:  this.commentReplies
                 }).then(this.commentAddWord = '')
                 .then()
        }

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="back">
-      <router-link to="/">Go Back</router-link>
+      <router-link to="/main-page">Go Back</router-link>
     </div>
     <form class="new-feedback" @submit.prevent="submitted">
       <h2 class="new-feedback__title">Create New Feedback</h2>
