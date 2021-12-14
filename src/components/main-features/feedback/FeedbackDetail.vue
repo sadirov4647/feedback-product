@@ -28,7 +28,7 @@
         <div class="feedback-comments__section">
             <h3 class="feedback-comments__count">{{ comments.length }} Comments</h3>
             <ul  class="feedback-comments" >
-                <Comment :comment="comment" v-for="(comment, key) in comments" :key="key"/>
+                <Comment :comment="comment" :feedbackKey="this.$route.params.key" v-for="(comment, key) in comments" :key="key"/>
             </ul>
         </div>
 
