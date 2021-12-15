@@ -83,4 +83,34 @@
     a:hover{
         background-color: #C75AF6;
     }
-</style>
+
+    @media only screen and (max-width:700px) {
+        .main-header{
+            padding: 12px 12px;
+        }
+    }
+
+    @media only screen and (max-width:590px) {
+        .main-header{
+            position: fixed;
+            top: 90px;
+            margin: 0;
+            width: 100%;
+            border-radius: 0;
+            justify-content: center;
+        }
+        .suggestions{
+            display: none;
+        }
+        .suggestions::before{
+            margin-right: 8px;
+        }
+        input{
+            width: 120px;
+        }
+        a{
+            margin-left: 0;
+            padding: 4px 8px;
+        }
+    }
+    </style>

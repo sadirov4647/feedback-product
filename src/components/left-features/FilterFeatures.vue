@@ -62,8 +62,8 @@ export default {
       .filter-wrapper{
         margin: 0;
         margin-right: 10px;
-        padding: 18px;
-        max-width: 150px;
+        padding: 12px;
+        max-width: 199px;
       }
     }
 </style>

@@ -21,4 +21,10 @@ import Main from '../components/main/Main.vue'
     .main-page__wrapper{
         display: flex;
     }
+
+    @media only screen and (max-width:700px){
+        .main-page__wrapper{
+            flex-direction: column;
+        }
+    }
 </style>

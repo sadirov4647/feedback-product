@@ -3,7 +3,7 @@
         <div class="replier">
             <div class="replier-info">
                 <h3 class="replier-name">Anne Valentine</h3>
-                <p class="replier-email">@annev1990</p>
+                <p class="replier-email">reply</p>
             </div>
             <button @click="replyToReply" class="reply-btn">Reply</button>
         </div>
@@ -13,7 +13,7 @@
 
 <script>
     export default {
-        name:'Reply'
+        name:'Reply',
     }
 </script>
 

@@ -45,23 +45,38 @@
             }
         },
         props:['comment', 'feedbackKey'],
+
+         created(){
+            let replies = db.ref(`feedbacks/${this.feedbackKey}/${this.comment.keys}`)
+            replies.once('value', snapshot =>{
+                snapshot.forEach(item => {
+                    if(item.val().reply){
+                        console.log(Object.values(item.val()))
+                        // console.log(item.val().reply)
+                    }
+                })
+            })
+
+
+        },
         methods:{
             replySwitch(){
                 this.isReply = !this.isReply
                 console.log(this.comment.keys)
             },
             replyToComment(){
-                let replies = db.ref(`feedbacks/${this.feedbackKey}/${this.comment.keys}`)
-                if(this.commentReply === ''){
-                    this.fillArea = true
-                }else{
-                    this.fillArea = false
-                    replies.push({
-                        reply:this.commentReply,
-                        userEmail: auth.currentUser.email})
-                        .then(this.commentReply = '')
-                        .then(console.log(replies))
-                    }
+                let repliesSend = db.ref(`feedbacks/${this.feedbackKey}/${this.comment.keys}`)
+                console.log(repliesSend)
+                // if(this.commentReply === ''){
+                //     this.fillArea = true
+                // }else{
+                //     this.fillArea = false
+                //     repliesSend.push({
+                //         reply:this.commentReply,
+                //         userEmail: auth.currentUser.email})
+                //         .then(this.commentReply = '')
+                //         .then(console.log(repliesSend))
+                //     }
                 }
 
             }

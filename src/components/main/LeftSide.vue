@@ -27,6 +27,14 @@ import Roadmap from '../../components/left-features/Roadmap.vue'
   @media screen and (max-width:700px) {
     .left-side{
       display: flex;
+      justify-content: center;
+      margin-right: 0;
+    }
+  }
+
+  @media screen and (max-width:590px) {
+    .left-side{
+      display: block;
     }
   }
 </style>

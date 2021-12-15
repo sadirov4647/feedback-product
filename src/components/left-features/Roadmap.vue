@@ -75,8 +75,8 @@
     }
     @media screen and (max-width:590px){
       .roadmap{
+        max-width: 187px;
         padding: 18px;
-        widows: 150px;
         flex-grow: 1;
       }
     }

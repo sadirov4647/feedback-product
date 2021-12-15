@@ -4,6 +4,7 @@
             <h2 class="user-name">izzatillo</h2>
             <p class="user-board">user board</p>
         </div>
+        <button class="mobile-btn">X</button>
     </div>
 </template>
 
@@ -19,7 +20,7 @@
         border-radius: 10px;
         padding: 24px;
         padding-top: 100px;
-        max-width: 255px;
+        align-items: center;
     }
     .user-name{
         color: #fff;
@@ -28,6 +29,13 @@
     .user-board{
         color: #fff;
         margin: 0;
+    }
+    .mobile-btn{
+        cursor: pointer;
+        border: none;
+        padding: 12px;
+        border-radius: 5px;
+        display: none;
     }
 
     @media screen and (max-width:700px) and (min-width:591px) {
@@ -38,9 +46,16 @@
     }
 
     @media screen and (max-width:590px){
-      .about-user{
-        margin-right: 10px;
-        max-width: 150px;
-      }
+        .about-user{
+            width: 100%;
+            position: fixed;
+            display: flex;
+            justify-content: space-around;
+            padding-top: 20px;
+            border-radius: 0;
+        }
+        .user-info{
+            max-width: 100%;
+        }
     }
 </style>
