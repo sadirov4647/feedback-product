@@ -2,18 +2,19 @@
     <div class="replies">
         <div class="replier">
             <div class="replier-info">
-                <h3 class="replier-name">Anne Valentine</h3>
-                <p class="replier-email">reply</p>
+                <h3 class="replier-name">Salim</h3>
+                <p class="replier-email">{{ reply.userEmail }}</p>
             </div>
             <button @click="replyToReply" class="reply-btn">Reply</button>
         </div>
-        <p class="replier-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, odio veritatis velit voluptates fugit eum ipsam excepturi tempora quos ut dolor ex mollitia voluptatibus necessitatibus!</p>
+        <p class="replier-text">{{ reply.reply }}</p>
     </div>
 </template>
 
 <script>
     export default {
         name:'Reply',
+        props:['reply']
     }
 </script>
 

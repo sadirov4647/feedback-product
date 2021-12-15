@@ -34,7 +34,8 @@
 
         <div class="adding-comment">
             <h3 class="adding-comment__title">Add Comment</h3>
-            <!-- <p v-if="commentLength > 250">You are typing so much!!!</p> -->
+            <p v-if="commentLength > 250">You are typing so much!!!</p>
+            <p class="warn" v-if="noCommentWarn">Please fill the given area before you write to</p>
             <textarea name="adding-comment__text" class="adding-comment__text" cols="30" rows="5" v-model="commentAddWord" maxlength="250"></textarea>
             <form class="adding-comment__form" @submit.prevent="addComment">
                 <span v-if="commentLength < 250">{{ 250 - commentLength }} Characters left</span>
@@ -50,6 +51,9 @@
     import Comment  from './Comment.vue'
     export default {
         name:'FeedbackDetail',
+        props:{
+            comment:this.comment
+        },
         components:{
             Comment
         },
@@ -60,7 +64,8 @@
                 comments:[],
                 commentReply:'',
                 commentAddWord:'',
-                childReplyKeys:[]
+                childReplyKeys:[],
+                noCommentWarn:false
             }
         },
         computed:{
@@ -92,12 +97,17 @@
         },
         methods:{
             addComment(){
-                let comments = db.ref(`feedbacks/${this.key}`)
-                comments.push({
-                    comment: this.commentAddWord,
-                    userEmail: auth.currentUser.email,
-                }).then(this.commentAddWord = '')
-                .then()
+                let comments = db.ref(`feedbacks/${this.key}`);
+                if(this.commentAddWord === ''){
+                    this.noCommentWarn = true
+                }else{
+                    comments.push({
+                        comment: this.commentAddWord,
+                        userEmail: auth.currentUser.email,
+                    })
+                    .then(this.commentAddWord = '')
+                    .then(window.location.reload())
+                }
             }
         }
     }
@@ -157,6 +167,16 @@
         font-size: 18px;
         line-height: 26px;
         margin-bottom: 8px;
+    }
+    .adding_btn{
+        padding: 12px 24px;
+        background-color: #AD1FEA;
+        border-radius: 10px;
+        border: none;
+        align-self: flex-start;
+        color: #fff;
+        white-space: nowrap;
+        cursor: pointer;
     }
     .feedback-features__comment {
         color: #647196;

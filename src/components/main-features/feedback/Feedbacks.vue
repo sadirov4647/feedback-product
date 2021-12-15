@@ -24,7 +24,7 @@
         </div>
       </router-link>
       <div class="feedback-comment">
-        <span class="feedback-comment__count">2</span>
+        <span class="feedback-comment__count">4</span>
       </div>
     </li>
   </ul>
@@ -34,6 +34,7 @@
 import { db } from "../../../main";
 export default {
   name: "Feedbacks",
+  props:['comment'],
   data() {
     return {
       feedbacks: []
