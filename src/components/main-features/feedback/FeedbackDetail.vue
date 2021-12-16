@@ -48,12 +48,9 @@
 
 <script>
     import { db, auth } from '../../../main'
-    import Comment  from './Comment.vue'
+    import Comment from './Comment.vue'
     export default {
         name:'FeedbackDetail',
-        props:{
-            comment:this.comment
-        },
         components:{
             Comment
         },

@@ -1,7 +1,7 @@
 <template>
     <div class="main-header">
         <div class="suggestions">
-            <span class="suggestion-count">6</span>
+            <span class="suggestion-count">{{ feedbacks.length }}</span>
             <p>Suggestions</p>
         </div>
         <div class="sort-upvotes">
@@ -18,20 +18,91 @@
         <router-link to="/new-feedback"> + Add Feedback</router-link>
     </div>
 
-    <Feedbacks/>
+
+    <div v-if="noFeedback" class="no-feedback">
+        <h1 class="no-feedback_title">There is no feedback yet.</h1>
+        <p class="no-feedback_para">Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
+        <router-link class="no-feedback_add" to="/new-feedback">+ Feedback</router-link>
+      </div>
+
+    <Feedbacks v-else :feedback="feedback"  v-for="(feedback, key) in feedbacks" :key="key"/>
 </template>
 
 <script>
     import Feedbacks from '../main-features/feedback/Feedbacks.vue'
+    import { db } from '../../main'
     export default {
         name:'MainHeader',
         components:{
             Feedbacks
-        }
-    }
+        },
+    data() {
+      return {
+        feedbacks: [],
+        noFeedback:false
+      };
+    },
+    created() {
+      var feedbackRef = db.ref("/feedbacks");
+      feedbackRef.once("value", (snapshot) => {
+        let feedbackss = [];
+        snapshot.forEach((childSnapshot) => {
+          var key = childSnapshot.key;
+          var data = childSnapshot.val();
+
+          feedbackss.push({
+            key: key,
+            headline: data.headline,
+            category: data.category,
+            comment: data.comment,
+            likes: Math.floor(Math.random() * 100)
+          });
+          if(feedbackss.length){
+            this.feedbacks = feedbackss
+          }else{
+            this.noFeedback = true
+          }
+        });
+      });
+    },
+  };
 </script>
 
 <style scoped>
+    .no-feedback{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 100px;
+  }
+  .no-feedback::before{
+    content: "";
+    background: url(../../assets/noFeedback.png);
+    width: 130px;
+    height: 140px;
+  }
+  .no-feedback_title{
+    font-size: 24px;
+    line-height: 34px;
+    margin-top: 0;
+  }
+  .no-feedback_para{
+    margin-top: 0;
+  }
+  .no-feedback_add{
+    padding: 12px 25px;
+    background-color: #AD1FEA;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .no-feedback_add:hover{
+    background-color: #C75AF6;
+  }
     .main-header{
         background-color: #373F68;
         padding: 14px 24px;

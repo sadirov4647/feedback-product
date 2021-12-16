@@ -54,9 +54,6 @@ import { db } from "../../../main";
 
 export default {
   name: "NewFeedback",
-  //     firebase:{
-  //      users:userRef,
-  //    },
   data() {
     return {
       feedback: {

@@ -46,7 +46,6 @@
             }
         },
         props:['comment', 'feedbackKey'],
-
         created(){
             let replies =  db.ref(`feedbacks/${this.feedbackKey}/${this.comment.keys}`);
             replies.once('value', snapshot =>{
