@@ -7,7 +7,7 @@
       width="12"
       height="8"
       />
-      <span class="like-count" @click="LikesChange">{{ like }}</span>
+      <span class="like-count" @click="LikesChange">{{ feedback.likes }}</span>
     </div>
     <router-link
     :to="{ name: 'FeedbackDetail', params: { key: feedback.key } }"
@@ -29,22 +29,7 @@
 <script>
   export default {
     name: "Feedbacks",
-    props:['feedback'],
-    data(){
-      return{
-        like:this.feedback.likes
-      }
-    },
-    computed:{
-      Likes(){
-        return  typeof(like)
-      }
-    },
-    methods:{
-      LikesChange(){
-        console.log(typeof(like))
-      }
-    }
+    props:['feedback']
   }
 </script>
 

@@ -6,13 +6,13 @@
         </div>
         <div class="sort-upvotes">
             <label for="myUpvotes">Sort by:</label>
-            <input class="upvotes" id="myUpvotes" list="upvotes" value="Most Upvotes">
-            <datalist id="upvotes">
-                <option value="Most Upvotes"></option>
-                <option value="Least Upvotes"></option>
-                <option value="Most Comments"></option>
-                <option value="Least Comments"></option>
-            </datalist>
+            <select id="upvotes" @change="filterBySelect($event)">
+                <option value="mostupvotes">Most Upvotes</option>
+                <option value="leastupvotes">Least Upvotes</option>
+                <option value="mostcomments">Most Comments</option>
+                <option value="leastcomments">Least Comments</option>
+            </select>
+            <!-- <p>{{ selected }}</p> -->
         </div>
 
         <router-link to="/new-feedback"> + Add Feedback</router-link>
@@ -39,8 +39,16 @@
     data() {
       return {
         feedbacks: [],
-        noFeedback:false
+        noFeedback:false,
       };
+    },
+    methods:{
+      filterBySelect(event){
+        let value = event.target.value
+        if(value === 'mostupvotes'){
+          this.feedbacks.sort(i => { console.log(i.likes)})
+        }
+      }
     },
     created() {
       var feedbackRef = db.ref("/feedbacks");
@@ -49,7 +57,6 @@
         snapshot.forEach((childSnapshot) => {
           var key = childSnapshot.key;
           var data = childSnapshot.val();
-
           feedbackss.push({
             key: key,
             headline: data.headline,
@@ -66,6 +73,7 @@
       });
     },
   };
+
 </script>
 
 <style scoped>
@@ -133,9 +141,17 @@
     p{
         margin: 0;
     }
-    .upvotes{
+    #upvotes{
         border: none;
         background-color: inherit;
+        width: 100%;
+        outline: none;
+    }
+    select{
+      color: #fff;
+    }
+    option{
+      color: black;
     }
     input{
         color: #fff;
