@@ -16,7 +16,8 @@ export default {
     filterFeedback(event){
       let ok = event.target
       if(ok.classList.contains('filter-btn')){
-        console.log(ok.value)
+
+        ok.classList.toggle("active")
       }
     }
   }
@@ -39,9 +40,6 @@ export default {
       border-radius: 10px;
       margin-bottom: 14px;
       cursor: pointer;
-    }
-    .filter-btn:hover{
-      background-color: #CFD7FF;
     }
     .filter-btn:not(:last-child){
       margin-right: 8px;

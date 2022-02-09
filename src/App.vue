@@ -1,16 +1,10 @@
 <template>
-  <div class="container">
-
-  </div>
   <router-view/>
 </template>
 
 <script>
   export default {
     name: "Home",
-    components:{
-
-    }
   };
 </script>
 
@@ -23,13 +17,6 @@
     line-height: 23px;
     color: #3A4374;
     margin: 0;
-  }
-  .container{
-    max-width: 1150;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-left: auto;
-    margin-right: auto;
   }
   .home{
     display: flex;

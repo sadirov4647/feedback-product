@@ -2,7 +2,7 @@
     <div class="roadmap">
         <div class="roadmap-header">
             <h3>Roadmap</h3>
-            <router-link to="view">View</router-link>
+            <router-link to="/view">View</router-link>
         </div>
         <ul class="roadmap-list">
             <li class="roadmap-list__item">

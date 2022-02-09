@@ -1,13 +1,15 @@
 <template>
-    <div class="main-page__wrapper">
-        <LeftSide/>
-        <Main/>
+    <div class="container">
+        <div class="main-page__wrapper">
+            <LeftSide />
+            <Main />
+        </div>
     </div>
 </template>
 
 <script>
-import LeftSide from '../components/main/LeftSide.vue'
-import Main from '../components/main/Main.vue'
+    import LeftSide from '../components/main/LeftSide.vue'
+    import Main from '../components/main/Main.vue'
     export default {
         name:'MainPage',
         components:{
@@ -20,6 +22,13 @@ import Main from '../components/main/Main.vue'
 <style scoped>
     .main-page__wrapper{
         display: flex;
+    }
+    .container{
+        max-width: 1150;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     @media only screen and (max-width:700px){

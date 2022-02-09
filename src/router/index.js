@@ -20,6 +20,11 @@ const routes = [
     component:()=> import('../components/SignUp.vue')
   },
   {
+    path:'/view',
+    name:'View',
+    component:()=> import('../views/View.vue')
+  },
+  {
     path:'/feedback/:key',
     name:'FeedbackDetail',
     component:()=> import('../components/main-features/feedback/FeedbackDetail.vue'),
