@@ -24,7 +24,9 @@
     <router-link class="no-feedback_add" to="/new-feedback">+ Feedback</router-link>
   </div>
 
-  <Feedbacks v-else :feedback="feedback"  v-for="(feedback, key) in feedbacks" :key="key"/>
+  <ul v-else class="feedbacks-wrapper">
+    <Feedbacks :feedback="feedback"  v-for="(feedback, key) in feedbacks" :key="key"/>
+  </ul>
 </template>
 
 <script>
@@ -69,6 +71,11 @@
 </script>
 
 <style scoped>
+   .feedbacks-wrapper{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
   .no-feedback{
     display: flex;
     flex-direction: column;
@@ -177,6 +184,9 @@
   }
 
   @media only screen and (max-width:590px) {
+    .feedbacks-wrapper{
+      padding-top: 180px;
+    }
     .main-header{
       position: fixed;
       top: 11%;

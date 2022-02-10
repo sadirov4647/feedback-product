@@ -19,6 +19,26 @@
     color: #3A4374;
     margin: 0;
   }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #373F68;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: #373F68;
+    -webkit-box-shadow: inset 0 0 6px #373F68;
+  }
+  ::-webkit-scrollbar-thumb:window-inactive {
+    background: #373F68;
+  }
   .home{
     display: flex;
   }
