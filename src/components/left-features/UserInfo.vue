@@ -25,10 +25,16 @@
     .user-name{
         color: #fff;
         margin: 0;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 29px;
     }
     .user-board{
         color: #fff;
         margin: 0;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 22px;
     }
     .mobile-btn{
         cursor: pointer;
@@ -40,22 +46,24 @@
 
     @media screen and (max-width:700px) and (min-width:591px) {
         .about-user{
-            width: 130px;
             margin-right: 10px;
         }
     }
 
     @media screen and (max-width:590px){
         .about-user{
-            width: 100%;
+            width: 86%;
             position: fixed;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             padding-top: 20px;
             border-radius: 0;
         }
         .user-info{
             max-width: 100%;
+        }
+        .mobile-btn{
+            display: block;
         }
     }
 </style>

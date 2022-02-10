@@ -1,56 +1,48 @@
 <template>
-    <div class="main-header">
-        <div class="suggestions">
-            <span class="suggestion-count">{{ feedbacks.length }}</span>
-            <p>Suggestions</p>
-        </div>
-        <div class="sort-upvotes">
-            <label for="myUpvotes">Sort by:</label>
-            <select id="upvotes" @change="filterBySelect($event)">
-                <option value="mostupvotes">Most Upvotes</option>
-                <option value="leastupvotes">Least Upvotes</option>
-                <option value="mostcomments">Most Comments</option>
-                <option value="leastcomments">Least Comments</option>
-            </select>
-            <!-- <p>{{ selected }}</p> -->
-        </div>
-
-        <router-link to="/new-feedback"> + Add Feedback</router-link>
+  <div class="main-header">
+    <div class="suggestions">
+      <span class="suggestion-count">{{ feedbacks.length }}</span>
+      <p>Suggestions</p>
+    </div>
+    <div class="sort-upvotes">
+      <label for="myUpvotes">Sort by:</label>
+      <select id="upvotes" v-model="selected">
+        <option value="mostupvotes">Most Upvotes</option>
+        <option value="leastupvotes">Least Upvotes</option>
+        <option value="mostcomments">Most Comments</option>
+        <option value="leastcomments">Least Comments</option>
+      </select>
     </div>
 
+    <router-link to="/new-feedback"> + Add Feedback</router-link>
+  </div>
 
-    <div v-if="noFeedback" class="no-feedback">
-        <h1 class="no-feedback_title">There is no feedback yet.</h1>
-        <p class="no-feedback_para">Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
-        <router-link class="no-feedback_add" to="/new-feedback">+ Feedback</router-link>
-      </div>
 
-    <Feedbacks v-else :feedback="feedback"  v-for="(feedback, key) in feedbacks" :key="key"/>
+  <div v-if="noFeedback" class="no-feedback">
+    <h1 class="no-feedback_title">There is no feedback yet.</h1>
+    <p class="no-feedback_para">Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
+    <router-link class="no-feedback_add" to="/new-feedback">+ Feedback</router-link>
+  </div>
+
+  <Feedbacks v-else :feedback="feedback"  v-for="(feedback, key) in feedbacks" :key="key"/>
 </template>
 
 <script>
-    import Feedbacks from '../main-features/feedback/Feedbacks.vue'
-    import { db } from '../../main'
-    export default {
-        name:'MainHeader',
-        components:{
-            Feedbacks
-        },
+  import Feedbacks from '../main-features/feedback/Feedbacks.vue'
+  import { db } from '../../main'
+  export default {
+    name:'MainHeader',
+    components:{
+      Feedbacks
+    },
     data() {
       return {
         feedbacks: [],
         noFeedback:false,
+        selected:""
       };
     },
-    methods:{
-      filterBySelect(event){
-        let value = event.target.value
-        if(value === 'mostupvotes'){
-          this.feedbacks.sort(i => { console.log(i.likes)})
-        }
-      }
-    },
-    created() {
+    mounted() {
       var feedbackRef = db.ref("/feedbacks");
       feedbackRef.once("value", (snapshot) => {
         let feedbackss = [];
@@ -77,7 +69,7 @@
 </script>
 
 <style scoped>
-    .no-feedback{
+  .no-feedback{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,93 +103,104 @@
   .no-feedback_add:hover{
     background-color: #C75AF6;
   }
+  .sort-upvotes{
+    display: flex;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #fff;
+  }
+  .sort-upvotes label{
+    width: 80px;
+  }
+  .main-header{
+    background-color: #373F68;
+    padding: 14px 24px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .suggestions{
+    display: flex;
+    align-items: center;
+    color: #fff;
+    margin-right: 40px;
+  }
+  .suggestions::before{
+    content: "";
+    background: url('../../assets/Vector.png');
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+  }
+  .suggestion-count{
+    margin-right: 10px;
+  }
+  p{
+    margin: 0;
+  }
+  #upvotes{
+    border: none;
+    background-color: inherit;
+    width: 100%;
+    outline: none;
+  }
+  select{
+    color: #fff;
+  }
+  option{
+    color: black;
+  }
+  input{
+    color: #fff;
+  }
+  a{
+    padding: 12px 25px;
+    background-color: #AD1FEA;
+    border: none;
+    border-radius: 10px;
+    margin-left: auto;
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  a:hover{
+    background-color: #C75AF6;
+  }
+
+  @media only screen and (max-width:700px) {
     .main-header{
-        background-color: #373F68;
-        padding: 14px 24px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        margin-bottom: 24px;
+      padding: 12px 12px;
+    }
+  }
+
+  @media only screen and (max-width:590px) {
+    .main-header{
+      position: fixed;
+      top: 11%;
+      margin: 0;
+      width: 90%;
+      justify-content: space-between;
+      border-radius: 0;
     }
     .suggestions{
-        display: flex;
-        align-items: center;
-        color: #fff;
-        margin-right: 40px;
+      display: none;
     }
     .suggestions::before{
-        content: "";
-        background: url('../../assets/Vector.png');
-        width: 24px;
-        height: 24px;
-        margin-right: 16px;
-    }
-    .suggestion-count{
-        margin-right: 10px;
-    }
-    .sort-upvotes{
-        color: #fff;
-    }
-    p{
-        margin: 0;
-    }
-    #upvotes{
-        border: none;
-        background-color: inherit;
-        width: 100%;
-        outline: none;
-    }
-    select{
-      color: #fff;
-    }
-    option{
-      color: black;
+      margin-right: 8px;
     }
     input{
-        color: #fff;
+      width: 120px;
     }
     a{
-        padding: 12px 25px;
-        background-color: #AD1FEA;
-        border: none;
-        border-radius: 10px;
-        margin-left: auto;
-        color: #fff;
-        cursor: pointer;
-        white-space: nowrap;
-        text-decoration: none;
+      margin-left: 0;
+      padding: 4px 8px;
     }
-    a:hover{
-        background-color: #C75AF6;
+    .sort-upvotes{
+      display: flex;
+      align-items: center;
     }
-
-    @media only screen and (max-width:700px) {
-        .main-header{
-            padding: 12px 12px;
-        }
-    }
-
-    @media only screen and (max-width:590px) {
-        .main-header{
-            position: fixed;
-            top: 90px;
-            margin: 0;
-            width: 100%;
-            border-radius: 0;
-            justify-content: center;
-        }
-        .suggestions{
-            display: none;
-        }
-        .suggestions::before{
-            margin-right: 8px;
-        }
-        input{
-            width: 120px;
-        }
-        a{
-            margin-left: 0;
-            padding: 4px 8px;
-        }
-    }
-    </style>
+  }
+</style>

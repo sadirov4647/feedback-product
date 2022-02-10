@@ -12,6 +12,7 @@
   body{
     width: 100%;
     height: 100%;
+    font-family: 'Jost', 'PT Sans Caption', 'Roboto', sans-serif;
     background: #F2F2F2;
     font-size: 16px;
     line-height: 23px;
